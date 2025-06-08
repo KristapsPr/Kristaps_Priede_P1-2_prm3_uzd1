@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grupu Sadalītājs</title>
+<meta name="description" content="Ātrs un viegli lietojams rīks skolēnu grupu sadalīšanai un meklēšanai!" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" />
+</head>
+<body>
+<header role="banner">
+  <h1>Grupu Sadalītājs</h1>
+</header>
+
+<main>
+  <section aria-labelledby="group-title" class="screen">
+    <h2 id="group-title">Sadalīt skolēnus grupās</h2>
+    <label for="studentsInput">Ievadi skolēnu vārdus (Enter, komats vai ielīmē sarakstu):</label>
+    <textarea id="studentsInput" placeholder="Pievieno vārdus..." rows="4"></textarea>
+
+    <label for="maxGroupSize">Maksimālais skolēnu skaits vienā grupā:</label>
+    <input type="number" id="maxGroupSize" aria-label="Maksimālais skolēnu skaits vienā grupā" />
+
+    <button id="splitGroups" aria-label="Sadalīt skolēnus grupās">Sadalīt grupās</button>
+
+    <h3>Izveidotās grupas:</h3>
+    <div id="groupOutput" class="output" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="search-title" class="screen">
+    <h2 id="search-title">Atrodi skolēnu grupu</h2>
+    <label for="searchInput">Ievadi vārdu:</label>
+    <input type="text" id="searchInput" placeholder="Ievadi vārdu..." aria-label="Meklēt skolēnu grupā" />
+    <button id="searchBtn" aria-label="Meklēt grupu">Meklēt</button>
+
+    <h3>Meklēšanas rezultāts:</h3>
+    <div id="searchOutput" class="output" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p>Skolotāju rīks © 2025</p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
