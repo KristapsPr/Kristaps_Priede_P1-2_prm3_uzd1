@@ -1,5 +1,14 @@
 let groups = [];
 
+// Shuffle function (Fisher-Yates)
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 document.getElementById('splitGroups').addEventListener('click', () => {
   const namesInput = document.getElementById('studentsInput').value;
   const names = namesInput.split(/,|\n|\r/).map(n => n.trim()).filter(n => n !== '');
@@ -9,6 +18,9 @@ document.getElementById('splitGroups').addEventListener('click', () => {
     alert('Lūdzu, ievadi pareizus datus!');
     return;
   }
+
+  // Shuffle names before splitting into groups
+  shuffle(names);
 
   groups = [];
   let currentGroup = [];
