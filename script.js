@@ -1,6 +1,6 @@
 let groups = [];
 
-// Fisher-Yates shuffle function
+// Fisher-Yates shuffle function to randomize the array in place
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -11,7 +11,7 @@ function shuffle(array) {
 
 document.getElementById('splitGroups').addEventListener('click', () => {
   const namesInput = document.getElementById('studentsInput').value;
-  const names = namesInput.split(/,|\n|\r/).map(n => n.trim()).filter(n => n !== '');
+  let names = namesInput.split(/,|\n|\r/).map(n => n.trim()).filter(n => n !== '');
   const maxSize = parseInt(document.getElementById('maxGroupSize').value);
 
   if (!maxSize || maxSize <= 0 || names.length === 0) {
@@ -19,8 +19,8 @@ document.getElementById('splitGroups').addEventListener('click', () => {
     return;
   }
 
-  // Shuffle the names array to randomize groups every time
-  shuffle(names);
+  // Shuffle names randomly
+  names = shuffle(names);
 
   groups = [];
   let currentGroup = [];
