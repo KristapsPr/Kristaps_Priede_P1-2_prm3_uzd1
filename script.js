@@ -1,5 +1,6 @@
 let groups = [];
 
+// Shuffle function stays the same
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -8,14 +9,25 @@ function shuffle(array) {
   return array;
 }
 
+// New parser function to handle quoted names and names with spaces
+function parseNames(input) {
+  const regex = /"([^"]+)"|([^,\r\n]+)/g;
+  let names = [];
+  let match;
+  while ((match = regex.exec(input)) !== null) {
+    const name = (match[1] || match[2]).trim();
+    if (name) names.push(name);
+  }
+  return names;
+}
+
 document.getElementById('splitGroups').addEventListener('click', () => {
   const namesInput = document.getElementById('studentsInput').value;
-  let names = namesInput
-    .split(/,|\r?\n/)  // split on commas or new lines only
-    .map(n => n.trim())
-    .filter(n => n !== '');
 
-  console.log('Split names:', names);  // Check how names are split
+  // Use the new parseNames function here
+  let names = parseNames(namesInput);
+
+  console.log('Parsed names:', names);
 
   const maxSize = parseInt(document.getElementById('maxGroupSize').value);
 
@@ -25,7 +37,7 @@ document.getElementById('splitGroups').addEventListener('click', () => {
   }
 
   names = shuffle(names);
-  console.log('Shuffled names:', names);  // Check shuffled array
+  console.log('Shuffled names:', names);
 
   groups = [];
   let currentGroup = [];
