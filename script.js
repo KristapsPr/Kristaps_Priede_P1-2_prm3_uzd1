@@ -1,5 +1,6 @@
 let groups = [];
 
+// Fisher-Yates shuffle function to randomize the array in place
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -11,7 +12,7 @@ function shuffle(array) {
 document.getElementById('splitGroups').addEventListener('click', () => {
   const namesInput = document.getElementById('studentsInput').value;
   let names = namesInput
-    .split(/[\s,]+/)  // split by spaces, commas, newlines etc.
+    .split(/,|\r?\n/)  // split only on commas or new lines
     .map(n => n.trim())
     .filter(n => n !== '');
 
@@ -22,9 +23,7 @@ document.getElementById('splitGroups').addEventListener('click', () => {
     return;
   }
 
-  console.log('Before shuffle:', names);
   names = shuffle(names);
-  console.log('After shuffle:', names);
 
   groups = [];
   let currentGroup = [];
